@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-inter: var(--astro-font-inter);
+  --font-sora: var(--astro-font-sora);
+}

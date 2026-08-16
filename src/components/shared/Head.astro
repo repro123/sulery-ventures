@@ -1,0 +1,41 @@
+---
+import { Font } from "astro:assets";
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image = "/social-card.png" } = Astro.props;
+
+// TODO: once you have a domain, add `site: "https://yourdomain.com"` to
+// astro.config.mjs, then uncomment the two lines below and swap the
+// og:image / twitter:image content values to use `ogImageURL` instead
+// of the raw `image` prop. Also add back:
+// <link rel="canonical" href={canonicalURL} />
+//
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// const ogImageURL = new URL(image, Astro.site);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- Open Graph / social sharing -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:type" content="website" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+<Font cssVariable="--astro-font-inter" preload />
+<Font cssVariable="--astro-font-sora" preload />
