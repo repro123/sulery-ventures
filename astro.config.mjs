@@ -21,4 +21,7 @@ export default defineConfig({
       fallbacks: ["sans-serif"],
     },
   ],
+  prefetch: {
+    prefetchAll: true,
+  },
 });

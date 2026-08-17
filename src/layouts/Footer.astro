@@ -1,9 +1,86 @@
 ---
 import Container from "@layouts/Container.astro";
+import Logo from "@components/shared/Logo.astro";
+
+const currentYear = new Date().getFullYear();
+const developedYear = 2026;
 ---
 
-<footer>
-  <Container>
-    <p>This is the footer</p>
+<footer class="bg-charcoal py-12 text-white border-t border-t-muted-text">
+  <Container className="grid gap-6">
+    <div class="flex flex-col gap-6 lg:flex-row lg:justify-between">
+      <div class="grid gap-4">
+        <Logo />
+
+        <h2>Sulery Ventures</h2>
+
+        <p>
+          Delivering precise, secure, and reliable technology solutions to
+          enterprise clients and individuals across Lagos.
+        </p>
+      </div>
+
+      <div>
+        <h3>Services</h3>
+
+        <ul>
+          <li>Service 1</li>
+          <li>Service 1</li>
+          <li>Service 1</li>
+          <li>Service 1</li>
+          <li>Service 1</li>
+          <li>Service 1</li>
+          <li>Service 1</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Company</h3>
+
+        <ul>
+          <li>Company 1</li>
+          <li>Company 1</li>
+          <li>Company 1</li>
+          <li>Company 1</li>
+          <li>Company 1</li>
+          <li>Company 1</li>
+          <li>Company 1</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+
+        <ul>
+          <li>getintouch 1</li>
+          <li>getintouch 1</li>
+          <li>getintouch 1</li>
+          <li>getintouch 1</li>
+          <li>getintouch 1</li>
+          <li>getintouch 1</li>
+          <li>getintouch 1</li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between text-sm"
+    >
+      <p>
+        &copy; {
+          currentYear === developedYear
+            ? developedYear
+            : `${developedYear} - ${currentYear}`
+        } Sulery Ventures. All rights reserved.
+      </p>
+
+      <p>
+        Developed by <a
+          href="https://reprotechagency.com"
+          target="_blank"
+          class="text-primary-orange underline underline-offset-4 transition-all duration-450 hover:-translate-y-1 inline-block"
+          >Repro Tech Agency</a
+        >
+      </p>
+    </div>
   </Container>
 </footer>
