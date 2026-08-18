@@ -2,19 +2,22 @@
 import Container from "@layouts/Container.astro";
 import Logo from "@components/shared/Logo.astro";
 
+import Address from "@components/footer/Address.astro";
+import Company from "@components/footer/Address.astro";
+
 const currentYear = new Date().getFullYear();
 const developedYear = 2026;
 ---
 
 <footer class="bg-charcoal py-12 text-white border-t border-t-muted-text">
-  <Container className="grid gap-6">
+  <Container className="grid gap-8">
     <div class="flex flex-col gap-6 lg:flex-row lg:justify-between">
       <div class="grid gap-4">
         <Logo />
 
         <h2>Sulery Ventures</h2>
 
-        <p>
+        <p class="max-w-[30ch]">
           Delivering precise, secure, and reliable technology solutions to
           enterprise clients and individuals across Lagos.
         </p>
@@ -23,7 +26,7 @@ const developedYear = 2026;
       <div>
         <h3>Services</h3>
 
-        <ul>
+        <ul class="grid gap-2 mt-6">
           <li>Service 1</li>
           <li>Service 1</li>
           <li>Service 1</li>
@@ -34,33 +37,12 @@ const developedYear = 2026;
         </ul>
       </div>
 
-      <div>
-        <h3>Company</h3>
+      <Company />
 
-        <ul>
-          <li>Company 1</li>
-          <li>Company 1</li>
-          <li>Company 1</li>
-          <li>Company 1</li>
-          <li>Company 1</li>
-          <li>Company 1</li>
-          <li>Company 1</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Get in touch</h3>
-
-        <ul>
-          <li>getintouch 1</li>
-          <li>getintouch 1</li>
-          <li>getintouch 1</li>
-          <li>getintouch 1</li>
-          <li>getintouch 1</li>
-          <li>getintouch 1</li>
-          <li>getintouch 1</li>
-        </ul>
-      </div>
+      <Address />
     </div>
+
+    <hr />
 
     <div
       class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between text-sm"

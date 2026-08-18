@@ -1,0 +1,12 @@
+---
+import NavLink from "@components/shared/NavLink.astro";
+import { navLinks } from "@/lib/data";
+---
+
+<div>
+  <h3>Company</h3>
+
+  <ul class="mt-6 grid gap-2">
+    {navLinks.map((link) => <NavLink link={link} footer={true} />)}
+  </ul>
+</div>

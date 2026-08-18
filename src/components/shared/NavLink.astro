@@ -1,0 +1,14 @@
+---
+import type { NavLink } from "@/lib/types";
+
+interface Props {
+  link: NavLink;
+  footer?: boolean;
+}
+
+const { link, footer = false } = Astro.props;
+---
+
+<li class={footer ? "capitalize text-light-accent hover:underline" : ""}>
+  <a href={link.href}>{link.label}</a>
+</li>

@@ -1,0 +1,33 @@
+---
+import Whatsapp from "@components/svg/Whatsapp.astro";
+import { MapPin, Phone, Mail } from "@lucide/astro";
+---
+
+<div>
+  <h3>Get in touch</h3>
+
+  <address class="grid gap-4 mt-6">
+    <div class="flex items-center gap-2">
+      <MapPin />
+      <p>Lagos, Nigeria</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <Phone />
+      <a href="tel:+2348023220365" class="text-light-accent hover:underline"
+        >+234-(0)-8023220364</a
+      >
+    </div>
+    <div class="flex items-center gap-2">
+      <Mail />
+      <a href="mailto:???" class="text-light-accent hover:underline"
+        >Insert email address</a
+      >
+    </div>
+    <div class="flex items-center gap-2">
+      <Whatsapp className="size-6" />
+      <a href="" target="_blank" class="text-light-accent hover:underline"
+        >Add whastapp contact</a
+      >
+    </div>
+  </address>
+</div>
