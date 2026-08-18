@@ -1,0 +1,25 @@
+---
+const currentYear = new Date().getFullYear();
+const developedYear = 2026;
+---
+
+<div
+  class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between text-sm"
+>
+  <p>
+    &copy; {
+      currentYear === developedYear
+        ? developedYear
+        : `${developedYear} - ${currentYear}`
+    } Sulery Ventures. All rights reserved.
+  </p>
+
+  <p>
+    Developed by <a
+      href="https://reprotechagency.com"
+      target="_blank"
+      class="text-primary-orange underline underline-offset-4 transition-all duration-450 hover:-translate-y-1 inline-block"
+      >Repro Tech Agency</a
+    >
+  </p>
+</div>

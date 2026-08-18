@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 
 import Head from "@layouts/Head.astro";
+import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
 
 interface Props {
@@ -18,7 +19,9 @@ const { title, description, image } = Astro.props;
   <head>
     <Head title={title} description={description} image={image} />
   </head>
-  <body class="min-h-dvh antialiased font-inter bg-background">
+  <body class="min-h-dvh antialiased font-inter bg-background text-main-text">
+    <Header />
+
     <slot />
 
     <Footer />
