@@ -4,11 +4,14 @@ import type { NavLink } from "@/lib/types";
 interface Props {
   link: NavLink;
   className?: string;
+  activeClass?: string;
 }
 
-const { link, className = "" } = Astro.props;
+const { link, className = "", activeClass = "" } = Astro.props;
+
+const isActive = activeClass !== "" && Astro.url.pathname === link.href;
 ---
 
-<li class={className}>
+<li class:list={[className, { [activeClass]: isActive }]}>
   <a href={link.href}>{link.label}</a>
 </li>

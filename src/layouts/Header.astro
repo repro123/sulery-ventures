@@ -2,12 +2,25 @@
 import Container from "@layouts/Container.astro";
 import Logo from "@components/shared/Logo.astro";
 import MobileMenu from "@components/client/MobileMenu.tsx";
+import Navigation from "@components/shared/Navigation.astro";
+
+import HeaderCallCTA from "@components/header/HeaderCallCTA.astro";
 ---
 
-<header class="sticky top-0 bg-white shadow py-4">
+<header class="sticky top-0 bg-white shadow py-6">
   <Container className="flex items-center gap-4 justify-between">
     <Logo />
 
     <MobileMenu client:load />
+
+    <div class="hidden lg:block">
+      <Navigation
+        ulClass="flex items-center gap-6 xl:gap-12 uppercase font-semibold"
+        liClass="hover:text-primary-orange"
+        activeClass="desktop-active"
+      />
+    </div>
+
+    <HeaderCallCTA />
   </Container>
 </header>

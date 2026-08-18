@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { navLinks } from "@/lib/data";
 import NavLink from "@components/shared/NavLink";
 
@@ -6,6 +7,7 @@ interface Props {
   ulClass?: string;
   liClass?: string;
   ariaLabel?: string;
+  activeClass?: string;
 }
 
 export default function Navigation({
@@ -13,12 +15,25 @@ export default function Navigation({
   ulClass = "",
   liClass = "",
   ariaLabel = "",
+  activeClass = "",
 }: Props) {
+  const [currentPath, setCurrentPath] = useState("");
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+
   return (
     <nav aria-label={ariaLabel} className={navClass}>
       <ul className={ulClass}>
         {navLinks.map((link) => (
-          <NavLink key={link.href} link={link} className={liClass} />
+          <NavLink
+            key={link.href}
+            link={link}
+            className={liClass}
+            currentPath={currentPath}
+            activeClass={activeClass}
+          />
         ))}
       </ul>
     </nav>

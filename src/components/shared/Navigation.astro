@@ -7,18 +7,24 @@ interface Props {
   ulClass?: string;
   liClass?: string;
   ariaLabel?: string;
+  activeClass?: string;
 }
 
 const {
   navClass = "",
   ulClass = "",
   liClass = "",
-  ariaLabel = "",
+  ariaLabel = "Desktop Navigation",
+  activeClass = "",
 } = Astro.props;
 ---
 
 <nav aria-label={ariaLabel} class={navClass}>
   <ul class={ulClass}>
-    {navLinks.map((link) => <NavLink link={link} className={liClass} />)}
+    {
+      navLinks.map((link) => (
+        <NavLink link={link} className={liClass} activeClass={activeClass} />
+      ))
+    }
   </ul>
 </nav>
