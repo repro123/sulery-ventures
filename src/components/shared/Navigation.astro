@@ -1,0 +1,24 @@
+---
+import NavLink from "@components/shared/NavLink.astro";
+import { navLinks } from "@/lib/data";
+
+interface Props {
+  navClass?: string;
+  ulClass?: string;
+  liClass?: string;
+  ariaLabel?: string;
+}
+
+const {
+  navClass = "",
+  ulClass = "",
+  liClass = "",
+  ariaLabel = "",
+} = Astro.props;
+---
+
+<nav aria-label={ariaLabel} class={navClass}>
+  <ul class={ulClass}>
+    {navLinks.map((link) => <NavLink link={link} className={liClass} />)}
+  </ul>
+</nav>

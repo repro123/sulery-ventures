@@ -1,12 +1,13 @@
 ---
-import NavLink from "@components/shared/NavLink.astro";
-import { navLinks } from "@/lib/data";
+import Navigation from "@components/shared/Navigation.astro";
 ---
 
 <div>
   <h3>Company</h3>
 
-  <ul class="mt-6 grid gap-2">
-    {navLinks.map((link) => <NavLink link={link} footer={true} />)}
-  </ul>
+  <Navigation
+    ulClass="mt-6 grid gap-2"
+    ariaLabel="Footer Navigation"
+    liClass="text-light-accent capitalize hover:underline"
+  />
 </div>
