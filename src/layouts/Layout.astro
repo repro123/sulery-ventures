@@ -5,7 +5,6 @@ import Head from "@layouts/Head.astro";
 import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
 import SkipToMainContent from "@layouts/SkipToMainContent.astro";
-import WhatsappCTA from "@layouts/WhatsappCTA.astro";
 
 interface Props {
   title: string;
@@ -27,7 +26,6 @@ const { title, description, image } = Astro.props;
 
     <slot />
 
-    <WhatsappCTA />
     <Footer />
   </body>
 </html>
