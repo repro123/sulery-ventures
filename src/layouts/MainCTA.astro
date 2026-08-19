@@ -1,19 +1,56 @@
 ---
 import Container from "@layouts/Container.astro";
+import Whatsapp from "@components/svg/Whatsapp.astro";
+
+import { Phone, Mail } from "@lucide/astro";
 ---
 
 <section class="bg-primary-dark py-12 relative overflow-hidden">
   <div
-    class="absolute top-0 right-0 h-full w-64 bg-primary-orange z-1"
+    class="absolute top-0 right-0 h-full w-5xl bg-primary-orange z-1"
     style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
   >
-    <div class="absolute z-2 bg-black/50 w-full h-full top-0 left-0"></div>
+    <div class="absolute z-2 bg-black/80 w-full h-full top-0 left-0"></div>
   </div>
 
-  <Container className="flex flex-col gap-8">
-    <div>
-      <h1>Need a technology or security solution?</h1>
+  <Container
+    className="flex flex-col gap-8 relative z-3 text-white lg:flex-row lg:justify-between lg:gap-10"
+  >
+    <div class="flex flex-col gap-4 sm:gap-6 lg:max-w-prose">
+      <h2>Need a technology or security solution?</h2>
+      <p>
+        Whether you need a computer repaired, CCTV installed, your network set
+        up, or an access control system installed, we're ready to help.
+      </p>
+
+      <div class="grid gap-2 sm:gap-4">
+        <p class="flex items-center gap-2">
+          <Phone />
+          <a href="tel:+2348023220365">+234 (0) 802 322 0365</a>
+        </p>
+        <p class="flex items-center gap-2">
+          <Mail />
+          <a href="mailto:info@company.com">info@company.com</a>
+        </p>
+      </div>
     </div>
-    <div></div>
+
+    <div class="flex flex-col gap-4 sm:gap-6 l">
+      <a
+        href="/contact"
+        class="bg-primary-orange border border-primary-orange text-white tracking-wider py-3 px-6 hover:bg-light-accent hover:text-black transition-colors duration-300 text-center whitespace-nowrap"
+      >
+        Get a Quote
+      </a>
+
+      <a
+        href="https://wa.me/2348023220365"
+        target="_blank"
+        class="text-white py-3 px-6 transition-colors duration-300 border border-white hover:bg-white hover:text-black flex items-center justify-center gap-2 whitespace-nowrap"
+      >
+        <Whatsapp className="size-4" />
+        <span>Chat on WhatsApp</span>
+      </a>
+    </div>
   </Container>
 </section>
