@@ -1,0 +1,19 @@
+---
+import Container from "@layouts/Container.astro";
+---
+
+<section class="bg-primary-dark py-12 relative overflow-hidden">
+  <div
+    class="absolute top-0 right-0 h-full w-64 bg-primary-orange z-1"
+    style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+  >
+    <div class="absolute z-2 bg-black/50 w-full h-full top-0 left-0"></div>
+  </div>
+
+  <Container className="flex flex-col gap-8">
+    <div>
+      <h1>Need a technology or security solution?</h1>
+    </div>
+    <div></div>
+  </Container>
+</section>

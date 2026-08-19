@@ -1,5 +1,6 @@
 ---
 import WhatsappCTA from "@layouts/WhatsappCTA.astro";
+import MainCTA from "@layouts/MainCTA.astro";
 
 interface Props {
   class?: string;
@@ -12,4 +13,5 @@ const { class: className = "" } = Astro.props;
   <slot />
 
   <WhatsappCTA />
+  <MainCTA />
 </main>
