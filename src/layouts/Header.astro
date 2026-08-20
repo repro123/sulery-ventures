@@ -1,21 +1,25 @@
 ---
 import Container from "@layouts/Container.astro";
-import Logo from "@components/shared/Logo.astro";
 import MobileMenu from "@components/client/MobileMenu.tsx";
 import Navigation from "@components/shared/Navigation.astro";
 
 import HeaderCallCTA from "@components/header/HeaderCallCTA.astro";
+
+import IconBlack from "@assets/logos/icon-black.png";
+import { Image } from "astro:assets";
 ---
 
 <header class="sticky top-0 z-50 bg-white/80 py-4 shadow backdrop-blur-sm">
   <Container className="flex items-center gap-4 justify-between">
-    <Logo />
+    <a href="/" aria-label="Sulery Ventures Home">
+      <Image src={IconBlack} alt="Sulery Ventures" class="w-20 h-12" />
+    </a>
 
     <MobileMenu client:load />
 
     <div class="hidden lg:block">
       <Navigation
-        ulClass="flex items-center gap-6 xl:gap-12 uppercase font-semibold"
+        ulClass="font-sora tracking-wider flex items-center gap-6 xl:gap-12 uppercase font-semibold"
         liClass="hover:text-primary-orange"
         activeClass="desktop-active"
       />

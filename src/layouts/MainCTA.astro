@@ -5,7 +5,7 @@ import Whatsapp from "@components/svg/Whatsapp.astro";
 import { Phone, Mail } from "@lucide/astro";
 ---
 
-<section class="bg-primary-dark py-12 relative overflow-hidden">
+<section class="bg-primary-dark py-12 lg:py-16 relative overflow-hidden">
   <div
     class="absolute top-0 right-0 h-full w-5xl bg-primary-orange z-1"
     style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
@@ -26,11 +26,16 @@ import { Phone, Mail } from "@lucide/astro";
       <div class="grid gap-2 sm:gap-4">
         <p class="flex items-center gap-2">
           <Phone />
-          <a href="tel:+2348023220365">+234 (0) 802 322 0365</a>
+          <a href="tel:+2348023220365" class="text-light-accent hover:underline"
+            >+234 (0) 802 322 0365</a
+          >
         </p>
         <p class="flex items-center gap-2">
           <Mail />
-          <a href="mailto:info@company.com">info@company.com</a>
+          <a
+            href="mailto:info@company.com"
+            class="text-light-accent hover:underline">info@company.com</a
+          >
         </p>
       </div>
     </div>
