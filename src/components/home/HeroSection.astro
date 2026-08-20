@@ -5,6 +5,7 @@ import HeroImage from "@assets/images/home-hero.png";
 import { Image } from "astro:assets";
 
 import Whatsapp from "@components/svg/Whatsapp.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
 ---
 
 <section class="min-h-screen relative flex items-center">
@@ -22,8 +23,7 @@ import Whatsapp from "@components/svg/Whatsapp.astro";
         <p class="uppercase tracking-wide text-primary-orange text-sm">
           technology &amp; security solutions
         </p>
-        <span class="block mt-4 w-20 h-1 bg-primary-orange mx-auto md:ml-0"
-        ></span>
+        <HorizontalBar />
       </div>
 
       <h1 class="flex flex-col gap-1 mt-6">

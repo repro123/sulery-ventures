@@ -1,0 +1,136 @@
+---
+import Container from "@layouts/Container.astro";
+
+import {
+  Laptop,
+  Computer,
+  Cctv,
+  EthernetPort,
+  ScanFace,
+  MicSignal,
+} from "@lucide/astro";
+
+const scrollItems = [
+  { Icon: Laptop, item: "Computer Solutions and Repairs" },
+  { Icon: Computer, item: "Computer and Accessories Sales" },
+  { Icon: Cctv, item: "CCTV & Surveillance" },
+  { Icon: EthernetPort, item: "Networking" },
+  { Icon: ScanFace, item: "Access Control" },
+  { Icon: MicSignal, item: "Intercom Systems" },
+];
+---
+
+<section
+  class="bg-primary-dark py-5 text-white"
+  aria-labelledby="services-strip"
+>
+  <Container>
+    <h2 id="services-strip" class="sr-only">Sulery Ventures services</h2>
+
+    <div class="marquee" aria-label="Sulery Ventures services">
+      <div class="marquee__track">
+        <ul class="marquee__set">
+          {
+            scrollItems.map(({ Icon, item }) => (
+              <li class="marquee__item">
+                <Icon class="size-5 text-primary-orange" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <ul class="marquee__set" aria-hidden="true">
+          {
+            scrollItems.map(({ Icon, item }) => (
+              <li class="marquee__item">
+                <Icon class="size-5 text-primary-orange" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .marquee {
+    --gap: 1rem;
+    --fade-width: clamp(2rem, 10vw, 7rem);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 var(--fade-width),
+      #000 calc(100% - var(--fade-width)),
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 var(--fade-width),
+      #000 calc(100% - var(--fade-width)),
+      transparent
+    );
+  }
+
+  .marquee__track {
+    display: flex;
+    gap: var(--gap);
+    width: max-content;
+    animation: marquee-scroll 28s linear infinite;
+  }
+
+  .marquee__set {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .marquee__item {
+    display: inline-flex;
+    min-width: max-content;
+    align-items: center;
+    gap: 0.625rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-sora);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee-scroll {
+    to {
+      transform: translateX(calc(-50% - (var(--gap) / 2)));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow: visible;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .marquee__track {
+      width: 100%;
+      animation: none;
+    }
+
+    .marquee__set {
+      flex-wrap: wrap;
+    }
+
+    .marquee__set[aria-hidden="true"] {
+      display: none;
+    }
+  }
+</style>
