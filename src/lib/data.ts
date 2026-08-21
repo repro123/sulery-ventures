@@ -6,3 +6,11 @@ export const navLinks: NavLink[] = [
   { label: "services", href: "/services" },
   { label: "contact", href: "/contact" },
 ];
+
+export const serviceLinks = [
+  "computer solutions",
+  "cctv & surveillance",
+  "networking",
+  "access control",
+  "intercom systems",
+];

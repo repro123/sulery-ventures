@@ -1,5 +1,9 @@
 ---
+interface Props {
+  class?: string;
+}
 
+const { class: className = "" } = Astro.props;
 ---
 
-<span class="block mt-4 w-20 h-1 bg-primary-orange mx-auto md:ml-0"></span>
+<span class={`block mt-4 w-20 h-1 bg-primary-orange ${className}`}></span>
