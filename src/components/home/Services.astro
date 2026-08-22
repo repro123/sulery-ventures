@@ -1,6 +1,9 @@
 ---
 import Container from "@layouts/Container.astro";
 import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+import { Image } from "astro:assets";
+import { services } from "@lib/data.ts";
 ---
 
 <section class="py-12">
@@ -8,6 +11,24 @@ import HorizontalBar from "@components/shared/HorizontalBar.astro";
     <h2>Technology solutions for the real world</h2>
     <HorizontalBar />
 
-    <div></div>
+    <p class="mt-4 md:max-w-prose">
+      From computer repairs to complete security and networking installations,
+      we provide practical technology solutions for homes, businesses and
+      institutions.
+    </p>
+
+    <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+      {
+        services.map((service) => (
+          <div>
+            <h3>{service.label}</h3>
+            <div>
+              <Image src={service.image} alt={service.label} />
+            </div>
+            <div />
+          </div>
+        ))
+      }
+    </div>
   </Container>
 </section>
