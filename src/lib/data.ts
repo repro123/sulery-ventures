@@ -94,3 +94,23 @@ export const technologicalSolutions = [
     ],
   },
 ];
+
+export const problemToSolution = [
+  {
+    title: "Tell us what you need",
+    description: "Contact us by WhatsApp, phone or through email.",
+  },
+  {
+    title: "We assess the requirement",
+    description: "We understand the problem, site or project requirements.",
+  },
+  {
+    title: "We recommend a solution",
+    description: "We help you choose the right equipment and approach.",
+  },
+  {
+    title: "We install, repair or set it up",
+    description:
+      "Our job doesn't stop at recommending the solution—we get it working.",
+  },
+];

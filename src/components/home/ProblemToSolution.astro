@@ -1,11 +1,44 @@
 ---
 import Container from "@layouts/Container.astro";
 import HorizontalBar from "@components/shared/HorizontalBar.astro";
+import { problemToSolution } from "@lib/data";
 ---
 
-<section>
+<section class="py-12 bg-white">
   <Container>
     <h2>From problem to solution.</h2>
-    <HorizontalBar /></Container
-  >
+    <HorizontalBar />
+
+    <ol class="mt-6 flex flex-col">
+      {
+        problemToSolution.map((item, i) => {
+          const isLast = i === problemToSolution.length - 1;
+          return (
+            <li class="grid grid-cols-[auto_1fr] gap-4 sm:gap-8">
+              <div class="flex flex-col items-center">
+                <span
+                  aria-hidden="true"
+                  class="shrink-0 text-primary-orange bg-black rounded-full grid place-items-center size-14 sm:size-20 font-semibold text-sm sm:text-base"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {!isLast && (
+                  <span
+                    aria-hidden="true"
+                    class="w-px flex-1 bg-black/15 my-2"
+                  />
+                )}
+              </div>
+
+              <div class={`flex flex-col gap-2 ${isLast ? "pb-2" : "pb-8"}`}>
+                <p class="font-semibold text-lg">{item.title}</p>
+                <p>{item.description}</p>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </Container>
 </section>
