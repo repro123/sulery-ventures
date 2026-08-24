@@ -57,6 +57,6 @@
     @apply text-3xl font-semibold;
   }
   h3 {
-    @apply text-2xl font-semibold;
+    @apply text-xl font-semibold;
   }
 }

@@ -1,0 +1,43 @@
+---
+import Container from "@layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+import { House, User, Building2, School } from "@lucide/astro";
+import { technologicalSolutions } from "@lib/data";
+
+const itemIcons = [House, User, Building2, School];
+---
+
+<section class="py-12">
+  <Container>
+    <h2>Technology solutions for every environment.</h2>
+    <HorizontalBar />
+
+    <div
+      class="grid gap-4 md:grid-cols-2 lg:flex lg:justify-between lg:gap-8 mt-8"
+    >
+      {
+        technologicalSolutions.map((item, idx) => {
+          const Icon = itemIcons[idx];
+          return (
+            <div class="flex gap-4 md:flex-col">
+              <span>
+                <Icon class="text-primary-orange" />
+              </span>
+
+              <div>
+                <p class="uppercase font-sora font-semibold">{item.label}</p>
+
+                <ul class="my-2 pl-4 list-disc ">
+                  {item.solutions.map((solution) => (
+                    <li>{solution}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Container>
+</section>

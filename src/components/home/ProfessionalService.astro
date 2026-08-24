@@ -1,0 +1,31 @@
+---
+import Container from "@layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+import { professionalServices } from "@lib/data";
+import { CircleCheck } from "@lucide/astro";
+---
+
+<section class="py-12 bg-white">
+  <Container>
+    <h2>Professional service from setup to support</h2>
+    <HorizontalBar />
+
+    <ul class="grid gap-4 md:grid-cols-2 lg:gap-8 mt-8">
+      {
+        professionalServices.map((item) => (
+          <li class="flex gap-2">
+            <span>
+              <CircleCheck class="text-primary-orange" />
+            </span>
+
+            <div class="space-y-2">
+              <h3>{item.heading}</h3>
+              <p>{item.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</section>

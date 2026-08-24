@@ -45,3 +45,52 @@ export const services = [
       "Crystal clear audio and video communication systems for offices and residential complexes.",
   },
 ];
+
+export const professionalServices = [
+  {
+    heading: "Reliable Solutions",
+    description:
+      "Quality equipment and practical solutions built around your needs.",
+  },
+  {
+    heading: "Professional Service",
+    description: "Careful installation, configuration and troubleshooting.",
+  },
+  {
+    heading: "Responsive Support",
+    description: "Get direct assistance when you need it.",
+  },
+  {
+    heading: "End-to-End Solutions",
+    description:
+      "From consultation and installation to repairs and maintenance.",
+  },
+];
+
+export const technologicalSolutions = [
+  {
+    label: "homes",
+    solutions: ["CCTV", "Intercom", "Wi-Fi", "Access Control"],
+  },
+  {
+    label: "individuals",
+    solutions: [
+      "Computer Sales",
+      "Conmputer Repairs",
+      "Sales and repairs of accessories",
+    ],
+  },
+  {
+    label: "schools",
+    solutions: ["Networking", "Surveillance", "Access Control", "IT Solutions"],
+  },
+  {
+    label: "businesses",
+    solutions: [
+      "CCTV",
+      "Networking",
+      "Communication",
+      "tTechnology Infrastructure",
+    ],
+  },
+];
