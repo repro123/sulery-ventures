@@ -1,0 +1,91 @@
+---
+import type { Cta } from "@lib/types";
+import Container from "@layouts/Container.astro";
+
+import { Image } from "astro:assets";
+
+import Whatsapp from "@components/svg/Whatsapp.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+interface Props {
+  imgSrc: ImageMetadata;
+  imgAlt?: string;
+  eyebrowText: string;
+  headingSpanOne: string;
+  headingSpanTwo: string;
+  descriptionText: string;
+  ctas: Cta[];
+}
+
+const {
+  imgSrc,
+  imgAlt = "",
+  eyebrowText,
+  headingSpanOne,
+  headingSpanTwo,
+  descriptionText,
+  ctas,
+} = Astro.props;
+---
+
+<section class="min-h-screen relative flex items-center">
+  <Image
+    src={imgSrc}
+    alt={imgAlt}
+    class="absolute inset-0 h-full w-full object-cover -z-10"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="overlay absolute inset-0"></div>
+  <Container className="relative z-1 text-white text-center md:text-left">
+    <div class="md:max-w-prose">
+      <div>
+        <p class="uppercase tracking-wide text-primary-orange text-sm">
+          {eyebrowText}
+        </p>
+        <HorizontalBar class="mx-auto md:ml-0" />
+      </div>
+
+      <h1 class="flex flex-col gap-1 mt-6">
+        <span>{headingSpanOne}</span>
+        <span>{headingSpanTwo}</span>
+      </h1>
+
+      <p class="mt-4">
+        {descriptionText}
+      </p>
+
+      <div class="flex flex-col md:flex-row gap-4 md:items-center mt-6">
+        {
+          ctas.map((cta) => (
+            <a
+              href={cta.href}
+              target={cta.external ? "_blank" : undefined}
+              rel={cta.external ? "noopener noreferrer" : undefined}
+              class={
+                cta.variant === "primary"
+                  ? "bg-primary-orange border border-primary-orange hover:bg-light-accent hover:text-black transition-all duration-300 whitespace-nowrap px-6 py-2"
+                  : "flex items-center justify-center gap-2 border border-white transition-all duration-300 whitespace-nowrap hover:bg-white hover:text-black px-6 py-2"
+              }
+            >
+              {cta.label}
+              {cta.variant === "secondary" && <Whatsapp className="size-6" />}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .overlay {
+    background-image: linear-gradient(
+      90deg,
+      rgba(10, 10, 10, 0.96) 0%,
+      rgba(10, 10, 10, 0.82) 40%,
+      rgba(10, 10, 10, 0.35) 75%,
+      rgba(10, 10, 10, 0.55) 100%
+    );
+  }
+</style>

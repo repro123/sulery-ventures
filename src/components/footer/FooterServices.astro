@@ -1,0 +1,19 @@
+---
+import { services } from "@lib/data.ts";
+---
+
+<div>
+  <h3>Services</h3>
+
+  <ul class="grid gap-2 mt-6">
+    {
+      services.map((service) => (
+        <li class="text-light-accent capitalize hover:underline">
+          <a href={`/services/${service.label.replaceAll(" ", "-")}`}>
+            {service.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

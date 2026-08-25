@@ -1,67 +1,22 @@
 ---
-import Container from "@layouts/Container.astro";
-
 import HeroImage from "@assets/images/home-hero.png";
-import { Image } from "astro:assets";
 
-import Whatsapp from "@components/svg/Whatsapp.astro";
-import HorizontalBar from "@components/shared/HorizontalBar.astro";
+import Hero from "@components/shared/Hero.astro";
 ---
 
-<section class="min-h-screen relative flex items-center">
-  <Image
-    src={HeroImage}
-    alt=""
-    class="absolute inset-0 h-full w-full object-cover -z-10"
-    loading="eager"
-    fetchpriority="high"
-  />
-  <div class="overlay absolute inset-0"></div>
-  <Container className="relative z-1 text-white text-center md:text-left">
-    <div class="md:max-w-prose">
-      <div>
-        <p class="uppercase tracking-wide text-primary-orange text-sm">
-          technology &amp; security solutions
-        </p>
-        <HorizontalBar class="mx-auto md:ml-0" />
-      </div>
-
-      <h1 class="flex flex-col gap-1 mt-6">
-        <span>Technologies that work.</span>
-        <span>Securities you can trust.</span>
-      </h1>
-
-      <p class="mt-4">
-        Computer and accessories sales and repairs, CCTV, netowrking, access
-        control, and intercom solutions for home, businesses and institutions
-        across Lagos, and Nigeria.
-      </p>
-
-      <div class="flex flex-col md:flex-row gap-4 md:items-center mt-6">
-        <a
-          href="/contact"
-          class="bg-primary-orange border border-primary-orange hover:bg-light-accent hover:text-black transition-all duration-300 whitespace-nowrap px-6 py-2"
-          >Get Quote</a
-        >
-        <a
-          href="https://wa.me/2348023220365"
-          target="_blank"
-          class="flex items-center justify-center gap-2 border border-white transition-all duration-300 whitespace-nowrap hover:bg-white hover:text-black px-6 py-2"
-          >Whatsapp Us <Whatsapp className="size-6" /></a
-        >
-      </div>
-    </div>
-  </Container>
-</section>
-
-<style>
-  .overlay {
-    background-image: linear-gradient(
-      90deg,
-      rgba(10, 10, 10, 0.96) 0%,
-      rgba(10, 10, 10, 0.82) 40%,
-      rgba(10, 10, 10, 0.35) 75%,
-      rgba(10, 10, 10, 0.55) 100%
-    );
-  }
-</style>
+<Hero
+  imgSrc={HeroImage}
+  eyebrowText="technology & security solutions"
+  headingSpanOne="Technologies that work."
+  headingSpanTwo="Securities you can trust."
+  descriptionText="Computer and accessories sales and repairs, CCTV, netowrking, access control, and intercom solutions for home, businesses and institutions across Lagos, and Nigeria."
+  ctas={[
+    { label: "Get Quote", href: "/contact", variant: "primary" },
+    {
+      label: "Whatsapp Us",
+      href: "https://wa.me/2348023220365",
+      variant: "secondary",
+      external: true,
+    },
+  ]}
+/>

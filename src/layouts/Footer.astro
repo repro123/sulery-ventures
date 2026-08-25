@@ -4,6 +4,7 @@ import Container from "@layouts/Container.astro";
 import Address from "@components/footer/Address.astro";
 import Company from "@components/footer/Company.astro";
 import Attribution from "@components/footer/Attribution.astro";
+import FooterServices from "@components/footer/FooterServices.astro";
 
 import LogoWhite from "@assets/logos/logo-white.png";
 import { Image } from "astro:assets";
@@ -23,19 +24,7 @@ import { Image } from "astro:assets";
         </p>
       </div>
 
-      <div>
-        <h3>Services</h3>
-
-        <ul class="grid gap-2 mt-6">
-          <li>Service 1</li>
-          <li>Service 1</li>
-          <li>Service 1</li>
-          <li>Service 1</li>
-          <li>Service 1</li>
-          <li>Service 1</li>
-          <li>Service 1</li>
-        </ul>
-      </div>
+      <FooterServices />
 
       <Company />
 

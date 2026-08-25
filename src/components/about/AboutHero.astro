@@ -1,0 +1,22 @@
+---
+import AboutHeroImage from "@assets/images/about-hero.png";
+
+import Hero from "@components/shared/Hero.astro";
+---
+
+<Hero
+  imgSrc={AboutHeroImage}
+  eyebrowText="about sulery ventures"
+  headingSpanOne="Technology solutions."
+  headingSpanTwo="Built around your needs."
+  descriptionText="Sulery Ventures provides practical technology, security and infrastructure solutions for homes, individuals, businesses and institutions across Lagos, and Nigeria."
+  ctas={[
+    { label: "Services", href: "/services", variant: "primary" },
+    {
+      label: "Message Us",
+      href: "https://wa.me/2348023220365",
+      variant: "secondary",
+      external: true,
+    },
+  ]}
+/>
