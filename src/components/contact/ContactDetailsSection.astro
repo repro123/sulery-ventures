@@ -1,0 +1,17 @@
+---
+import Container from "@/layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+import ContactInformation from "@components/contact/ContactInformation.astro";
+---
+
+<section class="py-12">
+  <Container className="">
+    <h2>Contact us.</h2>
+    <HorizontalBar />
+
+    <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 mt-8">
+      <ContactInformation />
+    </div>
+  </Container>
+</section>
