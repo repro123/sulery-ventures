@@ -114,3 +114,18 @@ export const problemToSolution = [
       "Our job doesn't stop at recommending the solution—we get it working.",
   },
 ];
+
+export const contactResponseSteps = [
+  {
+    title: "We review",
+    description: "Our technical team assesses your specific requirements.",
+  },
+  {
+    title: "Consultation",
+    description: "We contact you to discuss options and clarify details.",
+  },
+  {
+    title: "Proposal & action",
+    description: "You receive a detailed quote and timeline for execution.",
+  },
+];

@@ -1,0 +1,33 @@
+---
+import Container from "@/layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+import { contactResponseSteps } from "@lib/data";
+---
+
+<section class="py-12 bg-light-accent">
+  <Container className="">
+    <h2>What happens next?</h2>
+    <HorizontalBar />
+
+    <ol
+      class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mt-8"
+    >
+      {
+        contactResponseSteps.map((step, i) => (
+          <li class="flex gap-8 lg:flex-col">
+            <span class="shrink-0 size-12 bg-primary-orange text-white rounded-full grid place-items-center font-bold text-xl">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+
+            <div class="flex flex-col gap-4 w-full">
+              <h3>{step.title}</h3>
+
+              <p class="mt-auto">{step.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </Container>
+</section>
