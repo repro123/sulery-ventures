@@ -1,0 +1,22 @@
+---
+import ContactHeroImage from "@assets/images/contact-hero.png";
+
+import Hero from "@components/shared/Hero.astro";
+---
+
+<Hero
+  imgSrc={ContactHeroImage}
+  eyebrowText="get in touch"
+  headingSpanOne="Let's talk about what you need"
+  headingSpanTwo=""
+  descriptionText="Whether you need a computer repaired, CCTV installed, a network set up, or a security system for your home or business, tell us what you need and we'll be happy to discuss it with you."
+  ctas={[
+    { label: "Services", href: "/services", variant: "primary" },
+    {
+      label: "Message Us",
+      href: "https://wa.me/2348023220365",
+      variant: "secondary",
+      external: true,
+    },
+  ]}
+/>
