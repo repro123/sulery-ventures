@@ -1,0 +1,206 @@
+<div>
+  <h3>Contact Form</h3>
+
+  <div class="mt-6 grid gap-4">
+    <form id="my-form" class="grid gap-6" novalidate>
+      <input
+        type="text"
+        name="_gotcha"
+        tabindex="-1"
+        autocomplete="off"
+        class="hidden"
+      />
+
+      <div class="grid gap-1">
+        <label for="name">Full Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          autocomplete="name"
+          class="border border-primary-orange bg-light-accent p-2 h-12"
+        />
+        <span data-error="name" aria-live="polite" class="text-sm text-red-500"
+        ></span>
+      </div>
+
+      <div class="grid gap-1">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+          class="border border-primary-orange bg-light-accent p-2 h-12"
+        />
+        <span data-error="email" aria-live="polite" class="text-sm text-red-500"
+        ></span>
+      </div>
+
+      <div class="grid gap-1">
+        <label for="message">Message:</label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          class="border border-primary-orange bg-light-accent p-2"></textarea>
+        <span
+          data-error="message"
+          aria-live="polite"
+          class="text-sm text-red-500"></span>
+      </div>
+
+      <button
+        type="submit"
+        id="submit-btn"
+        class="bg-primary-orange text-white w-full whitespace-nowrap py-3 cursor-pointer hover:bg-light-accent border border-primary-orange transition-all duration-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+        >Submit</button
+      >
+
+      <div id="fs-success" class="hidden bg-green-500 text-white p-2">
+        Thanks for your submission!
+      </div>
+      <div id="fs-error" class="hidden bg-red-500 text-white p-2">
+        Oops! There was a problem submitting your form.
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("my-form") as HTMLFormElement;
+  const successEl = document.getElementById("fs-success")!;
+  const errorEl = document.getElementById("fs-error")!;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+
+  const FORM_ENDPOINT = "https://formspree.io/f/maewrkdv";
+
+  function hideMessagesAfterDelay() {
+    setTimeout(() => {
+      successEl.classList.add("hidden");
+      errorEl.classList.add("hidden");
+    }, 4000);
+  }
+
+  function showFieldError(fieldName: string, message: string) {
+    const span = form.querySelector(`[data-error="${fieldName}"]`);
+    if (span) span.textContent = message;
+  }
+
+  function clearFieldError(fieldName: string) {
+    const span = form.querySelector(`[data-error="${fieldName}"]`);
+    if (span) span.textContent = "";
+  }
+
+  function clearAllErrors() {
+    form.querySelectorAll("[data-error]").forEach((span) => {
+      span.textContent = "";
+    });
+  }
+
+  // Validates ONE field by name, returns true if valid
+  function validateField(fieldName: string): boolean {
+    if (fieldName === "name") {
+      const name = form.querySelector<HTMLInputElement>("#name")!;
+      if (!name.value.trim()) {
+        showFieldError("name", "Please enter your name.");
+        return false;
+      }
+      clearFieldError("name");
+      return true;
+    }
+
+    if (fieldName === "email") {
+      const email = form.querySelector<HTMLInputElement>("#email")!;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email.value.trim()) {
+        showFieldError("email", "Please enter your email.");
+        return false;
+      }
+      if (!emailPattern.test(email.value)) {
+        showFieldError("email", "Please enter a valid email address.");
+        return false;
+      }
+      clearFieldError("email");
+      return true;
+    }
+
+    if (fieldName === "message") {
+      const message = form.querySelector<HTMLTextAreaElement>("#message")!;
+      if (!message.value.trim()) {
+        showFieldError("message", "Please enter a message.");
+        return false;
+      }
+      clearFieldError("message");
+      return true;
+    }
+
+    return true;
+  }
+
+  function validateForm(): boolean {
+    clearAllErrors();
+    const nameValid = validateField("name");
+    const emailValid = validateField("email");
+    const messageValid = validateField("message");
+    return nameValid && emailValid && messageValid;
+  }
+
+  // Wire up blur + input listeners for each field
+  const fieldNames = ["name", "email", "message"];
+
+  fieldNames.forEach((fieldName) => {
+    const field = form.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+      `#${fieldName}`,
+    )!;
+
+    // Validate fully when user leaves the field
+    field.addEventListener("blur", () => {
+      validateField(fieldName);
+    });
+
+    // Clear error as soon as they start typing again (don't re-validate yet)
+    field.addEventListener("input", () => {
+      const span = form.querySelector(`[data-error="${fieldName}"]`);
+      if (span?.textContent) {
+        clearFieldError(fieldName);
+      }
+    });
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    successEl.classList.add("hidden");
+    errorEl.classList.add("hidden");
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        successEl.classList.remove("hidden");
+        form.reset();
+      } else {
+        errorEl.classList.remove("hidden");
+      }
+    } catch {
+      errorEl.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Submit";
+      hideMessagesAfterDelay();
+    }
+  });
+</script>
