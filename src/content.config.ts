@@ -4,6 +4,12 @@ import { glob } from "astro/loaders";
 
 import { z } from "astro/zod";
 
+const subservice = z.object({
+  heading: z.string(),
+  paragraphs: z.array(z.string()).default([]),
+  items: z.array(z.string()).default([]),
+});
+
 const services = defineCollection({
   loader: glob({ base: "./src/content/services", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
@@ -22,6 +28,7 @@ const services = defineCollection({
     intro: z.array(z.string()),
     introHeading: z.string(),
     subserviceHeading: z.string(),
+    subservices: z.array(subservice).default([]),
   }),
 });
 

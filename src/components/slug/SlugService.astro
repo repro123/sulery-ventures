@@ -4,14 +4,61 @@ import HorizontalBar from "@components/shared/HorizontalBar.astro";
 
 interface Props {
   heading: string;
+
+  subservices: Array<{
+    heading: string;
+    paragraphs: string[];
+    items: string[];
+  }>;
 }
 
-const { heading } = Astro.props;
+const { heading, subservices } = Astro.props;
 ---
 
-<section class="py-12">
+<section class="py-12 bg-light-accent">
   <Container>
     <h2>{heading}</h2>
     <HorizontalBar />
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      {
+        subservices.map((subservice) => (
+          <article class="mt-8">
+            <h3 class="text-primary-orange">{subservice.heading}</h3>
+            {subservice.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+            {subservice.items.length > 0 && (
+              <ul class="list-disc">
+                {subservice.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </article>
+        ))
+      }
+    </div>
   </Container>
 </section>
+
+<style>
+  p {
+    margin-top: 1rem;
+    line-height: 1.8;
+  }
+
+  h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+</style>

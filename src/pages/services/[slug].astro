@@ -36,7 +36,10 @@ import SlugService from "@/components/slug/SlugService.astro";
       heading={service.data.introHeading}
       paragraphs={service.data.intro}
     />
-    <SlugService heading={service.data.subserviceHeading} />
+    <SlugService
+      heading={service.data.subserviceHeading}
+      subservices={service.data.subservices}
+    />
 
     <section>
       <Content />
