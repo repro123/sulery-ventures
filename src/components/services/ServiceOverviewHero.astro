@@ -1,0 +1,22 @@
+---
+import ServiceHeroImage from "@assets/images/services-hero.png";
+
+import Hero from "@components/shared/Hero.astro";
+---
+
+<Hero
+  imgSrc={ServiceHeroImage}
+  eyebrowText="our services"
+  headingSpanOne="Expert technology and security solutions."
+  headingSpanTwo=""
+  descriptionText="Practical, professional and dependable infrastructure for homes, businesses and institutions across Lagos, and Nigeria."
+  ctas={[
+    { label: "Contact", href: "/contact", variant: "primary" },
+    {
+      label: "Message Us",
+      href: "https://wa.me/2348023220365",
+      variant: "secondary",
+      external: true,
+    },
+  ]}
+/>

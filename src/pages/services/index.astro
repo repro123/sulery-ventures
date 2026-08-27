@@ -1,11 +1,17 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
+
+import ServiceOverviewHero from "@components/services/ServiceOverviewHero.astro";
+import WhatWeDo from "@components/services/WhatWeDo.astro";
 ---
 
 <Layout
-  title="Sulery Ventures | Technology & Security Solutions in Lagos"
+  title="Sulery Ventures Services | Technology & Security Solutions in Lagos"
   description="Sulery Ventures provides computer sales and repairs, CCTV installation, networking, access control, intercom systems and technology solutions for homes, businesses and institutions in Lagos."
 >
-  <Main />
+  <Main>
+    <ServiceOverviewHero />
+    <WhatWeDo />
+  </Main>
 </Layout>

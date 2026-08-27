@@ -1,0 +1,21 @@
+---
+import Container from "@layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+import { getCollection } from "astro:content";
+
+const services = await getCollection("services");
+
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
+---
+
+<script define:vars={{ sortedServices }}>
+  console.log(sortedServices);
+</script>
+
+<section class="py-12">
+  <Container>
+    <h2>What we do</h2>
+    <HorizontalBar />
+  </Container>
+</section>
