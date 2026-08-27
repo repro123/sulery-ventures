@@ -1,0 +1,63 @@
+---
+import Container from "@layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+interface Props {
+  heading: string;
+  cards: Array<{
+    heading: string;
+    paragraphs: string[];
+    items: string[];
+  }>;
+}
+
+const { heading, cards } = Astro.props;
+---
+
+<section class="py-12">
+  <Container>
+    <h2>{heading}</h2>
+    <HorizontalBar />
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 mt-8">
+      {
+        cards.map((card) => (
+          <article class="rounded-sm bg-light-accent p-6">
+            <h3>{card.heading}</h3>
+            {card.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+            {card.items.length > 0 && (
+              <ul>
+                {card.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  h3 {
+    margin-bottom: 0.75rem;
+    color: var(--color-primary-orange);
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+</style>

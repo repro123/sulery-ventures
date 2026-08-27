@@ -10,6 +10,12 @@ const subservice = z.object({
   items: z.array(z.string()).default([]),
 });
 
+const clientCard = z.object({
+  heading: z.string(),
+  paragraphs: z.array(z.string()).default([]),
+  items: z.array(z.string()).default([]),
+});
+
 const services = defineCollection({
   loader: glob({ base: "./src/content/services", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
@@ -29,6 +35,12 @@ const services = defineCollection({
     introHeading: z.string(),
     subserviceHeading: z.string(),
     subservices: z.array(subservice).default([]),
+    clientSection: z
+      .object({
+        heading: z.string(),
+        cards: z.array(clientCard).default([]),
+      })
+      .optional(),
   }),
 });
 

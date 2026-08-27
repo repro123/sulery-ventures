@@ -20,6 +20,7 @@ import FAQ from "@components/client/FAQ.tsx";
 import SlugHero from "@components/slug/SlugHero.astro";
 import SlugIntro from "@/components/slug/SlugIntro.astro";
 import SlugService from "@/components/slug/SlugService.astro";
+import SlugServiceForClient from "@/components/slug/SlugServiceForClient.astro";
 ---
 
 <script define:vars={{ service }}>
@@ -32,13 +33,20 @@ import SlugService from "@/components/slug/SlugService.astro";
 >
   <Main>
     <SlugHero service={service} />
+
     <SlugIntro
       heading={service.data.introHeading}
       paragraphs={service.data.intro}
     />
+
     <SlugService
       heading={service.data.subserviceHeading}
       subservices={service.data.subservices}
+    />
+
+    <SlugServiceForClient
+      heading={service.data.clientSection?.heading ?? "Our clients"}
+      cards={service.data.clientSection?.cards ?? []}
     />
 
     <section>
