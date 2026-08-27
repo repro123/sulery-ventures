@@ -9,3 +9,8 @@ export interface Cta {
   variant: "primary" | "secondary";
   external?: boolean;
 }
+
+export interface FAQProps {
+  question: string;
+  answer: string;
+}

@@ -19,9 +19,6 @@ if (!selectedService) {
 }
 ---
 
-<script define:vars={{ selectedService }}>
-  console.log("selected service:", selectedService);
-</script>
 <Hero
   imgSrc={selectedService.image}
   eyebrowText={service.data.title}

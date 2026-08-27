@@ -1,0 +1,17 @@
+---
+import Container from "@layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+interface Props {
+  heading: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<section class="py-12">
+  <Container>
+    <h2>{heading}</h2>
+    <HorizontalBar />
+  </Container>
+</section>
