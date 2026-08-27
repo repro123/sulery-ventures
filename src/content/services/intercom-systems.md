@@ -1,6 +1,8 @@
 ---
 title: "Intercom Systems"
 description: "CCTV installation, configuration, repairs and maintenance for homes, businesses and institutions."
+priSpan: "Stay connected from every room"
+secSpan: "Manage access with confidence"
 order: 5
 ---
 

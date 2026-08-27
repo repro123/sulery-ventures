@@ -7,15 +7,48 @@ import { getCollection } from "astro:content";
 const services = await getCollection("services");
 
 const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
+
+import {
+  Laptop,
+  Cctv,
+  EthernetPort,
+  ScanFace,
+  MicSignal,
+  ArrowRight,
+} from "@lucide/astro";
+
+const icons = [Laptop, Cctv, EthernetPort, ScanFace, MicSignal];
 ---
 
-<script define:vars={{ sortedServices }}>
-  console.log(sortedServices);
-</script>
-
-<section class="py-12">
+<section class="py-12 bg-light-accent">
   <Container>
     <h2>What we do</h2>
     <HorizontalBar />
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        sortedServices.map((item) => {
+          const Icon = icons[item.data.order - 1];
+          return (
+            <div class="bg-white shadow p-4 flex flex-row gap-4 md:flex-col items-start">
+              <span class="bg-light-accent text-primary-orange p-2 grid place-items-center w-fit shrink-0">
+                <Icon />
+              </span>
+
+              <div class="flex flex-col gap-4">
+                <h3>{item.data.title}</h3>
+                <p>{item.data.description}</p>
+                <a
+                  href={`/services/${item.id}`}
+                  class="uppercase tracking-wider text-sm text-primary-orange hover:underline flex items-center gap-1 mt-auto"
+                >
+                  view details <ArrowRight class="size-4" />
+                </a>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
   </Container>
 </section>

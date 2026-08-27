@@ -1,10 +1,10 @@
 import type { NavLink } from "@/lib/types";
 
-import AccessControl from "@assets/images/access-control.png";
-import CCTV from "@assets/images/cctv-surveillance.png";
 import ComputerSolutions from "@assets/images/computer-solutions.png";
-import Intercom from "@assets/images/intercom.png";
+import CCTV from "@assets/images/cctv-surveillance.png";
 import Networking from "@assets/images/networking.png";
+import AccessControl from "@assets/images/access-control.png";
+import Intercom from "@assets/images/intercom.png";
 
 export const navLinks: NavLink[] = [
   { label: "home", href: "/" },

@@ -10,6 +10,8 @@ const services = defineCollection({
     title: z.string(),
     description: z.string(),
     image: z.string().optional(),
+    priSpan: z.string(),
+    secSpan: z.string(),
     order: z.number().default(0),
   }),
 });

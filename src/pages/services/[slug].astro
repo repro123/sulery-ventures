@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const services = await getCollection("services");
+  return services.map((service) => ({
+    params: { slug: service.id },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+
+import SlugHero from "@components/slug/SlugHero.astro";
+---
+
+<script define:vars={{ service }}>
+  console.log(service);
+</script>
+
+<Layout
+  title={`${service.data.title} | Sulery Ventures | Technology & Security Solutions in Lagos`}
+  description={service.data.description}
+>
+  <Main>
+    <SlugHero service={service} />
+    <Content />
+  </Main>
+</Layout>

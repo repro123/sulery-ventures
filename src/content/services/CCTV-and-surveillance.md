@@ -1,6 +1,8 @@
 ---
 title: "CCTV & Surveillance"
 description: "CCTV installation, configuration, repairs and maintenance for homes, businesses and institutions."
+priSpan: "See what matters most"
+secSpan: "Protect your property around the clock"
 order: 2
 ---
 

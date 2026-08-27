@@ -9,7 +9,9 @@ import { services } from "@lib/data.ts";
     {
       services.map((service) => (
         <li class="text-light-accent capitalize hover:underline">
-          <a href={`/services/${service.label.replaceAll(" ", "-")}`}>
+          <a
+            href={`/services/${service.label.toLowerCase().replaceAll(" ", "-")}`}
+          >
             {service.label}
           </a>
         </li>

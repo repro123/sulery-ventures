@@ -12,7 +12,13 @@ import { Image } from "astro:assets";
 <header class="sticky top-0 z-50 bg-white/80 py-4 shadow backdrop-blur-sm">
   <Container className="flex items-center gap-4 justify-between">
     <a href="/" aria-label="Sulery Ventures Home">
-      <Image src={IconBlack} alt="Sulery Ventures" class="w-20 h-12" />
+      <Image
+        src={IconBlack}
+        alt="Sulery Ventures"
+        class="w-20 h-12"
+        loading="eager"
+        fetchpriority="high"
+      />
     </a>
 
     <MobileMenu client:load />

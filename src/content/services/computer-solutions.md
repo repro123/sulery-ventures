@@ -1,6 +1,8 @@
 ---
 title: "Computer Solutions"
 description: "Computer sales, repairs, upgrades and accessories for individuals, homes and businesses."
+priSpan: "Buy original computers and accessories"
+secSpan: "Repair faulty equipmentss"
 order: 1
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "Networking"
 description: "CCTV installation, configuration, repairs and maintenance for homes, businesses and institutions."
+priSpan: "Build a network that works"
+secSpan: "Keep your business connected"
 order: 3
 ---
 

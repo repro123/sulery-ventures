@@ -1,6 +1,8 @@
 ---
 title: "Access Control"
 description: "CCTV installation, configuration, repairs and maintenance for homes, businesses and institutions."
+priSpan: "Control access to your property"
+secSpan: "Keep every entry point secure"
 order: 4
 ---
 
