@@ -1,0 +1,79 @@
+---
+import Container from "@layouts/Container.astro";
+import HorizontalBar from "@components/shared/HorizontalBar.astro";
+
+interface ProcessStep {
+  heading: string;
+  paragraphs: string[];
+}
+
+interface SetupProcess {
+  heading: string;
+  paragraphs: string[];
+  steps: ProcessStep[];
+}
+
+interface Props {
+  processes: SetupProcess[];
+}
+
+const { processes } = Astro.props;
+---
+
+{
+  processes.map((process) => (
+    <section class="py-12">
+      <Container>
+        <h2>{process.heading}</h2>
+        <HorizontalBar />
+
+        <div class="mt-6">
+          {process.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {process.steps.map((step) => (
+              <article class="rounded-sm border border-light-accent p-6">
+                <h3>{step.heading}</h3>
+                {step.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </article>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
+  ))
+}
+
+<style>
+  h2 {
+    margin-bottom: 1.25rem;
+    color: var(--color-primary-orange);
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  article {
+    margin-top: 1rem;
+  }
+
+  h3 {
+    margin-bottom: 0.75rem;
+    color: var(--color-primary-orange);
+  }
+
+  ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+</style>

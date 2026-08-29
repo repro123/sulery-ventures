@@ -21,6 +21,7 @@ import SlugHero from "@components/slug/SlugHero.astro";
 import SlugIntro from "@/components/slug/SlugIntro.astro";
 import SlugService from "@/components/slug/SlugService.astro";
 import SlugServiceForClient from "@/components/slug/SlugServiceForClient.astro";
+import SlugSetupProcess from "@/components/slug/SlugSetupProcess.astro";
 ---
 
 <script define:vars={{ service }}>
@@ -48,6 +49,8 @@ import SlugServiceForClient from "@/components/slug/SlugServiceForClient.astro";
       heading={service.data.clientSection?.heading ?? "Our clients"}
       cards={service.data.clientSection?.cards ?? []}
     />
+
+    <SlugSetupProcess processes={service.data.setupProcesses} />
 
     <section>
       <Content />

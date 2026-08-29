@@ -16,6 +16,17 @@ const clientCard = z.object({
   items: z.array(z.string()).default([]),
 });
 
+const setupProcess = z.object({
+  heading: z.string(),
+  paragraphs: z.array(z.string()).default([]),
+  steps: z.array(
+    z.object({
+      heading: z.string(),
+      paragraphs: z.array(z.string()).default([]),
+    }),
+  ),
+});
+
 const services = defineCollection({
   loader: glob({ base: "./src/content/services", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
@@ -41,6 +52,7 @@ const services = defineCollection({
         cards: z.array(clientCard).default([]),
       })
       .optional(),
+    setupProcesses: z.array(setupProcess).default([]),
   }),
 });
 
