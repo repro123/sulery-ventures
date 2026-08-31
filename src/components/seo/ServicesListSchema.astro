@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  services: CollectionEntry<"services">[];
+}
+
+const { services } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+
+  name: "Sulery Ventures Services",
+
+  description:
+    "Technology, security and communication solutions provided by Sulery Ventures in Lagos, Nigeria.",
+
+  numberOfItems: services.length,
+
+  itemListElement: services.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      name: service.data.title,
+      description: service.data.description,
+      url: new URL(
+        `/services/${service.id}`,
+        "https://suleryventures.com",
+      ).toString(),
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

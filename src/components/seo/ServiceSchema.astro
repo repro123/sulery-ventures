@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  service: CollectionEntry<"services">;
+}
+
+const { service } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+
+  name: service.data.title,
+
+  description: service.data.description,
+
+  url: new URL(
+    `/services/${service.id}`,
+    "https://suleryventures.com",
+  ).toString(),
+
+  provider: {
+    "@type": "LocalBusiness",
+    name: "Sulery Ventures",
+    email: "suleryventures@hotmail.com",
+    url: "https://suleryventures.com",
+    telephone: "+2348023220365",
+  },
+
+  areaServed: {
+    "@type": "City",
+    name: "Lagos",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "NG",
+    },
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

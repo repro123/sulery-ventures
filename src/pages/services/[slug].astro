@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import ServiceSchema from "@components/seo/ServiceSchema.astro";
 
 export async function getStaticPaths() {
   const services = await getCollection("services");
@@ -24,15 +25,12 @@ import SlugServiceForClient from "@/components/slug/SlugServiceForClient.astro";
 import SlugSetupProcess from "@/components/slug/SlugSetupProcess.astro";
 ---
 
-<script define:vars={{ service }}>
-  console.log(service);
-</script>
-
 <Layout
   title={`${service.data.title} | Sulery Ventures | Technology & Security Solutions in Lagos`}
   description={service.data.description}
 >
   <Main>
+    <ServiceSchema service={service} />
     <SlugHero service={service} />
 
     <SlugIntro

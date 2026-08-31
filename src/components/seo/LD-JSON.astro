@@ -1,0 +1,42 @@
+---
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+
+  name: "Sulery Ventures",
+  email: "suleryventures@hotmail.com",
+
+  url: "https://suleryventures.com",
+
+  description:
+    "Sulery Ventures provides computer solutions, CCTV and surveillance, networking, access control and intercom system services in Lagos, Nigeria.",
+
+  telephone: "+2348023220365",
+
+  areaServed: {
+    "@type": "City",
+    name: "Lagos",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "NG",
+    },
+  },
+
+  knowsAbout: [
+    "Computer Sales",
+    "Computer Repairs",
+    "Computer Accessories",
+    "CCTV Installation",
+    "CCTV Surveillance",
+    "Networking",
+    "Access Control Systems",
+    "Intercom Systems",
+  ],
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+  is:inline
+/>

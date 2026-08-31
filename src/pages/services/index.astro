@@ -4,6 +4,14 @@ import Main from "@layouts/Main.astro";
 
 import ServiceOverviewHero from "@components/services/ServiceOverviewHero.astro";
 import WhatWeDo from "@components/services/WhatWeDo.astro";
+
+import ServicesListSchema from "@components/seo/ServicesListSchema.astro";
+
+import { getCollection } from "astro:content";
+
+const services = await getCollection("services");
+
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout
@@ -11,7 +19,8 @@ import WhatWeDo from "@components/services/WhatWeDo.astro";
   description="Sulery Ventures provides computer sales and repairs, CCTV installation, networking, access control, intercom systems and technology solutions for homes, businesses and institutions in Lagos."
 >
   <Main>
+    <ServicesListSchema services={sortedServices} />
     <ServiceOverviewHero />
-    <WhatWeDo />
+    <WhatWeDo services={sortedServices} />
   </Main>
 </Layout>

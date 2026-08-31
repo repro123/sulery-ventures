@@ -2,11 +2,13 @@
 import Container from "@layouts/Container.astro";
 import HorizontalBar from "@components/shared/HorizontalBar.astro";
 
-import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-const services = await getCollection("services");
+interface Props {
+  services: CollectionEntry<"services">[];
+}
 
-const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
+const { services } = Astro.props;
 
 import {
   Laptop,
@@ -27,7 +29,7 @@ const icons = [Laptop, Cctv, EthernetPort, ScanFace, MicSignal];
 
     <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
-        sortedServices.map((item) => {
+        services.map((item) => {
           const Icon = icons[item.data.order - 1];
           return (
             <div class="bg-white shadow p-4 flex flex-row gap-4 md:flex-col items-start">

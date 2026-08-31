@@ -1,5 +1,7 @@
 ---
 import { Font } from "astro:assets";
+import LocalBusinessSchema from "@components/seo/LD-JSON.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -8,14 +10,8 @@ interface Props {
 
 const { title, description, image = "/social-card.png" } = Astro.props;
 
-// TODO: once you have a domain, add `site: "https://yourdomain.com"` to
-// astro.config.mjs, then uncomment the two lines below and swap the
-// og:image / twitter:image content values to use `ogImageURL` instead
-// of the raw `image` prop. Also add back:
-// <link rel="canonical" href={canonicalURL} />
-//
-// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-// const ogImageURL = new URL(image, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
 ---
 
 <meta charset="UTF-8" />
@@ -24,6 +20,7 @@ const { title, description, image = "/social-card.png" } = Astro.props;
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="canonical" href={canonicalURL} />
 <meta name="theme-color" content="#ffffff" />
 
 <title>{title}</title>
@@ -32,14 +29,16 @@ const { title, description, image = "/social-card.png" } = Astro.props;
 <!-- Open Graph / social sharing -->
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={image} />
+<meta property="og:image" content={ogImageURL} />
 <meta property="og:type" content="website" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={image} />
+<meta name="twitter:image" content={ogImageURL} />
 
 <Font cssVariable="--astro-font-inter" preload />
 <Font cssVariable="--astro-font-sora" preload />
+
+<LocalBusinessSchema />
