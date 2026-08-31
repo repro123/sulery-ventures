@@ -11,7 +11,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
+  site: "https://suleryventures.com",
   fonts: [
     {
       provider: fontProviders.google(),
