@@ -20,12 +20,14 @@ export default function HeaderNavigationMenu({
   return (
     <NavigationMenu.Root className="min-w-max text-neutral-950">
       <NavigationMenu.List
-        className={`relative flex gap-px ${isMobile ? "flex-col" : ""}`}
+        className={`relative flex  ${isMobile ? "flex-col gap-4 mt-10" : "gap-px"}`}
       >
         {navLinks.map((link) =>
           link.href === "/services" ? (
             <NavigationMenu.Item key={link.href}>
-              <NavigationMenu.Trigger className={triggerClassName}>
+              <NavigationMenu.Trigger
+                className={isMobile ? mobileTriggerClassName : triggerClassName}
+              >
                 Services
                 <NavigationMenu.Icon className="transition-transform duration-200 ease-[ease] data-popup-open:rotate-180">
                   <CaretDownIcon />
@@ -65,7 +67,10 @@ export default function HeaderNavigationMenu({
             </NavigationMenu.Item>
           ) : (
             <NavigationMenu.Item key={link.href}>
-              <Link className={triggerClassName} href={link.href}>
+              <Link
+                className={isMobile ? mobileTriggerClassName : triggerClassName}
+                href={link.href}
+              >
                 {link.label}
               </Link>
             </NavigationMenu.Item>
@@ -78,7 +83,7 @@ export default function HeaderNavigationMenu({
           sideOffset={10}
           collisionPadding={{ top: 5, bottom: 5, left: 20, right: 20 }}
           collisionAvoidance={{ side: "none" }}
-          className="z-100 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-(--duration) ease-(--easing) before:absolute before:content-[''] data-instant:transition-none data-[side=bottom]:before:-top-2.5 data-[side=bottom]:before:right-0 data-[side=bottom]:before:left-0 data-[side=bottom]:before:h-2.5 data-[side=left]:before:top-0 data-[side=left]:before:-right-2.5 data-[side=left]:before:bottom-0 data-[side=left]:before:w-2.5 data-[side=right]:before:top-0 data-[side=right]:before:bottom-0 data-[side=right]:before:-left-2.5 data-[side=right]:before:w-2.5 data-[side=top]:before:right-0 data-[side=top]:before:-bottom-2.5 data-[side=top]:before:left-0 data-[side=top]:before:h-2.5"
+          className="z-1000 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-(--duration) ease-(--easing) before:absolute before:content-[''] data-instant:transition-none data-[side=bottom]:before:-top-2.5 data-[side=bottom]:before:right-0 data-[side=bottom]:before:left-0 data-[side=bottom]:before:h-2.5 data-[side=left]:before:top-0 data-[side=left]:before:-right-2.5 data-[side=left]:before:bottom-0 data-[side=left]:before:w-2.5 data-[side=right]:before:top-0 data-[side=right]:before:bottom-0 data-[side=right]:before:-left-2.5 data-[side=right]:before:w-2.5 data-[side=top]:before:right-0 data-[side=top]:before:-bottom-2.5 data-[side=top]:before:left-0 data-[side=top]:before:h-2.5"
           style={{
             ["--duration" as string]: "0.35s",
             ["--easing" as string]: "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -125,6 +130,9 @@ function CaretDownIcon(props: React.ComponentProps<"svg">) {
 
 const triggerClassName =
   "flex h-8 items-center justify-center gap-1.5 bg-transparent px-2 text-sm font-normal text-neutral-950 no-underline select-none min-[501px]:px-3 hover:bg-neutral-100 data-pressed:bg-neutral-100 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950 uppercase";
+
+const mobileTriggerClassName =
+  "flex h-8 gap-1.5 items-center bg-transparent px-2 text-sm font-normal text-white no-underline select-none min-[501px]:px-3 hover:bg-neutral-900 data-pressed:bg-neutral-900 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-50 uppercase w-fit";
 
 const contentClassName =
   "h-full w-[calc(100vw-40px)] p-2 min-[500px]:w-max min-[500px]:max-w-[400px] " +
