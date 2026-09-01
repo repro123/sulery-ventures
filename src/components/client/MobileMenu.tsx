@@ -1,8 +1,18 @@
 import { Drawer } from "@base-ui/react/drawer";
 import { Menu, X } from "lucide-react";
-import Navigation from "@/components/shared/Navigation";
+import HeaderNavigationMenu from "@/components/client/NavigationMenu";
 
-export default function MobileMenu() {
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+}
+
+interface HeaderNavigationMenuProps {
+  services: Service[];
+}
+
+export default function MobileMenu({ services }: HeaderNavigationMenuProps) {
   return (
     <div className="block lg:hidden relative">
       <Drawer.Root swipeDirection="right">
@@ -30,12 +40,7 @@ export default function MobileMenu() {
                 <Drawer.Description
                   className="mb-6 "
                   render={
-                    <Navigation
-                      ariaLabel="Mobile Menu"
-                      navClass="text-sm text-white grow pt-12"
-                      ulClass="flex flex-col gap-4 text-2xl uppercase font-sora font-bold"
-                      activeClass="mobile-active"
-                    />
+                    <HeaderNavigationMenu services={services} isMobile={true} />
                   }
                 />
               </Drawer.Content>

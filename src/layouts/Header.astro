@@ -1,12 +1,24 @@
 ---
 import Container from "@layouts/Container.astro";
 import MobileMenu from "@components/client/MobileMenu.tsx";
-import Navigation from "@components/shared/Navigation.astro";
+import HeaderNavigationMenu from "@/components/client/NavigationMenu";
 
 import HeaderCallCTA from "@components/header/HeaderCallCTA.astro";
 
 import IconBlack from "@assets/logos/icon-black.png";
 import { Image } from "astro:assets";
+
+import { getCollection } from "astro:content";
+
+const services = await getCollection("services");
+
+const sortedServices = services
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((service) => ({
+    id: service.id,
+    title: service.data.title,
+    description: service.data.description,
+  }));
 ---
 
 <header class="sticky top-0 z-50 bg-white/80 py-4 shadow backdrop-blur-sm">
@@ -21,14 +33,10 @@ import { Image } from "astro:assets";
       />
     </a>
 
-    <MobileMenu client:load />
+    <MobileMenu services={sortedServices} client:load />
 
     <div class="hidden lg:block">
-      <Navigation
-        ulClass="font-sora tracking-wider flex items-center gap-6 xl:gap-12 uppercase font-semibold"
-        liClass="hover:text-primary-orange"
-        activeClass="desktop-active"
-      />
+      <HeaderNavigationMenu services={sortedServices} client:load />
     </div>
 
     <HeaderCallCTA />
