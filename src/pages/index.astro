@@ -22,7 +22,7 @@ const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
 >
   <Main>
     <HeroSection />
-    <ScrollingServices />
+    <ScrollingServices services={sortedServices} />
     <Services services={sortedServices} />
     <ProfessionalService />
     <TechnologySolutions />

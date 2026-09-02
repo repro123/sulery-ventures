@@ -18,6 +18,14 @@ const scrollItems = [
   { Icon: ScanFace, item: "Access Control" },
   { Icon: MicSignal, item: "Intercom Systems" },
 ];
+
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  services: CollectionEntry<"services">[];
+}
+
+const { services } = Astro.props;
 ---
 
 <section
@@ -31,10 +39,10 @@ const scrollItems = [
       <div class="marquee__track">
         <ul class="marquee__set">
           {
-            scrollItems.map(({ Icon, item }) => (
+            services.map((service) => (
               <li class="marquee__item">
-                <Icon class="size-5 text-primary-orange" aria-hidden="true" />
-                <span>{item}</span>
+                {/* <Icon class="size-5 text-primary-orange" aria-hidden="true" /> */}
+                <span>{service.data.title}</span>
               </li>
             ))
           }
@@ -42,10 +50,10 @@ const scrollItems = [
 
         <ul class="marquee__set" aria-hidden="true">
           {
-            scrollItems.map(({ Icon, item }) => (
+            services.map((service) => (
               <li class="marquee__item">
-                <Icon class="size-5 text-primary-orange" aria-hidden="true" />
-                <span>{item}</span>
+                {/* <Icon class="size-5 text-primary-orange" aria-hidden="true" /> */}
+                <span>{service.data.title}</span>
               </li>
             ))
           }
