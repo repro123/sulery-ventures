@@ -137,7 +137,7 @@ export default function HeaderNavigationMenu({
             ["--easing" as string]: "cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
-          <NavigationMenu.Popup className="relative h-[var(--popup-height)] w-[var(--popup-width)] origin-[var(--transform-origin)] border border-neutral-950 bg-white text-neutral-950 shadow-[0.25rem_0.25rem_0] shadow-black/12 outline-none transition-[opacity,transform,width,height,scale] duration-[var(--duration)] ease-[var(--easing)] data-ending-style:scale-90 data-ending-style:opacity-0 data-ending-style:duration-150 data-ending-style:ease-[ease] data-starting-style:scale-90 data-starting-style:opacity-0">
+          <NavigationMenu.Popup className="relative h-[var(--popup-height)] max-h-[var(--available-height)] w-[var(--popup-width)] origin-[var(--transform-origin)] border border-neutral-950 bg-white text-neutral-950 shadow-[0.25rem_0.25rem_0] shadow-black/12 outline-none transition-[opacity,transform,width,height,scale] duration-[var(--duration)] ease-[var(--easing)] data-ending-style:scale-90 data-ending-style:opacity-0 data-ending-style:duration-150 data-ending-style:ease-[ease] data-starting-style:scale-90 data-starting-style:opacity-0">
             <NavigationMenu.Arrow className="relative block h-1.5 w-3 overflow-clip transition-[left,right] duration-[var(--duration)] ease-[var(--easing)] before:absolute before:bottom-0 before:left-1/2 before:block before:h-[calc(6px*sqrt(2))] before:w-[calc(6px*sqrt(2))] before:-translate-x-1/2 before:translate-y-1/2 before:rotate-45 before:border before:border-neutral-950 before:bg-white before:content-[''] data-[side=bottom]:top-[-6px] data-[side=left]:right-[-9px] data-[side=left]:rotate-90 data-[side=right]:left-[-9px] data-[side=right]:-rotate-90 data-[side=top]:bottom-[-6px] data-[side=top]:rotate-180" />
             <NavigationMenu.Viewport className="relative h-full w-full overflow-hidden" />
           </NavigationMenu.Popup>
@@ -219,7 +219,7 @@ const mobileActiveTriggerClassName =
   "bg-white text-neutral-950 hover:bg-white data-pressed:bg-white";
 
 const contentClassName =
-  "h-full w-[calc(100vw-40px)] p-2 min-[500px]:w-max min-[500px]:max-w-[400px] " +
+  "h-full max-h-[var(--available-height)] w-[calc(100vw-40px)] overflow-y-auto p-2 min-[500px]:w-max min-[500px]:max-w-[400px] " +
   "transition-[opacity,transform,translate] duration-[var(--duration)] ease-[var(--easing)] " +
   "data-starting-style:opacity-0 data-ending-style:opacity-0 " +
   "data-starting-style:data-[activation-direction=left]:translate-x-[-50%] " +
