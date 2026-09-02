@@ -1,5 +1,12 @@
 ---
-import { services } from "@lib/data.ts";
+interface Props {
+  services: {
+    id: string;
+    title: string;
+  }[];
+}
+
+const { services } = Astro.props;
 ---
 
 <div>
@@ -8,11 +15,9 @@ import { services } from "@lib/data.ts";
   <ul class="grid gap-2 mt-6">
     {
       services.map((service) => (
-        <li class="text-light-accent capitalize hover:underline">
-          <a
-            href={`/services/${service.label.toLowerCase().replaceAll(" ", "-")}`}
-          >
-            {service.label}
+        <li class="text-light-accent capitalize">
+          <a href={`/services/${service.id}`} class="hover:underline">
+            {service.title}
           </a>
         </li>
       ))

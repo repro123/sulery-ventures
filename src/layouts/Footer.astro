@@ -8,6 +8,17 @@ import FooterServices from "@components/footer/FooterServices.astro";
 
 import LogoWhite from "@assets/logos/logo-white.png";
 import { Image } from "astro:assets";
+
+import { getCollection } from "astro:content";
+
+const services = await getCollection("services");
+
+const sortedServices = services
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((service) => ({
+    id: service.id,
+    title: service.data.title,
+  }));
 ---
 
 <footer class="bg-charcoal py-12 text-white border-t border-neutral-500">
@@ -24,7 +35,7 @@ import { Image } from "astro:assets";
         </p>
       </div>
 
-      <FooterServices />
+      <FooterServices services={sortedServices} />
 
       <Company />
 

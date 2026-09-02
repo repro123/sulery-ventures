@@ -8,6 +8,12 @@ import Services from "@components/home/Services.astro";
 import ProfessionalService from "@components/home/ProfessionalService.astro";
 import TechnologySolutions from "@components/home/TechnologySolutions.astro";
 import ProblemToSolution from "@components/home/ProblemToSolution.astro";
+
+import { getCollection } from "astro:content";
+
+const services = await getCollection("services");
+
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout
@@ -17,7 +23,7 @@ import ProblemToSolution from "@components/home/ProblemToSolution.astro";
   <Main>
     <HeroSection />
     <ScrollingServices />
-    <Services />
+    <Services services={sortedServices} />
     <ProfessionalService />
     <TechnologySolutions />
     <ProblemToSolution />

@@ -1,6 +1,5 @@
 ---
 import Hero from "@components/shared/Hero.astro";
-import { services as servicesArray } from "@lib/data.ts";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -8,19 +7,10 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const selectedService = servicesArray.find(
-  (item) => item.label.toLowerCase().replaceAll(" ", "-") === service.id,
-);
-
-if (!selectedService) {
-  throw new Error(
-    `No matching service found in servicesArray for slug: ${service.id}`,
-  );
-}
 ---
 
 <Hero
-  imgSrc={selectedService.image}
+  imgSrc={service.data.image}
   eyebrowText={service.data.title}
   headingSpanOne={service.data.priSpan}
   headingSpanTwo={service.data.secSpan}

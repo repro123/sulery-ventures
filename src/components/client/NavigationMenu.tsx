@@ -11,12 +11,30 @@ interface Service {
 interface HeaderNavigationMenuProps {
   services: Service[];
   isMobile?: boolean;
+  currentPath: string;
 }
 
 export default function HeaderNavigationMenu({
   services,
   isMobile = false,
+  currentPath,
 }: HeaderNavigationMenuProps) {
+  const getTriggerClassName = (href: string) => {
+    const isActive = isActiveLink(currentPath, href);
+    const baseClassName = isMobile
+      ? mobileTriggerBaseClassName
+      : triggerBaseClassName;
+    const stateClassName = isMobile
+      ? isActive
+        ? mobileActiveTriggerClassName
+        : mobileInactiveTriggerClassName
+      : isActive
+        ? activeTriggerClassName
+        : inactiveTriggerClassName;
+
+    return `${baseClassName} ${stateClassName}`;
+  };
+
   return (
     <NavigationMenu.Root className="min-w-max text-neutral-950">
       <NavigationMenu.List
@@ -26,7 +44,7 @@ export default function HeaderNavigationMenu({
           link.href === "/services" ? (
             <NavigationMenu.Item key={link.href}>
               <NavigationMenu.Trigger
-                className={isMobile ? mobileTriggerClassName : triggerClassName}
+                className={getTriggerClassName(link.href)}
               >
                 Services
                 <NavigationMenu.Icon className="transition-transform duration-200 ease-[ease] data-popup-open:rotate-180">
@@ -37,7 +55,19 @@ export default function HeaderNavigationMenu({
               <NavigationMenu.Content className={contentClassName}>
                 <ul className="m-0 flex max-w-100 list-none flex-col justify-center p-0">
                   <li>
-                    <Link href="/services" className={linkCardClassName}>
+                    <Link
+                      href="/services"
+                      className={`${linkCardClassName} ${
+                        isExactActiveLink(currentPath, "/services")
+                          ? activeLinkCardClassName
+                          : ""
+                      }`}
+                      aria-current={
+                        isExactActiveLink(currentPath, "/services")
+                          ? "page"
+                          : undefined
+                      }
+                    >
                       <h3 className="m-0 mb-1 text-sm leading-4 font-normal">
                         All Services
                       </h3>
@@ -51,7 +81,22 @@ export default function HeaderNavigationMenu({
                     <li key={service.id}>
                       <Link
                         href={`/services/${service.id}`}
-                        className={linkCardClassName}
+                        className={`${linkCardClassName} ${
+                          isExactActiveLink(
+                            currentPath,
+                            `/services/${service.id}`,
+                          )
+                            ? activeLinkCardClassName
+                            : ""
+                        }`}
+                        aria-current={
+                          isExactActiveLink(
+                            currentPath,
+                            `/services/${service.id}`,
+                          )
+                            ? "page"
+                            : undefined
+                        }
                       >
                         <h3 className="m-0 mb-1 text-sm leading-4 font-normal">
                           {service.title}
@@ -68,8 +113,11 @@ export default function HeaderNavigationMenu({
           ) : (
             <NavigationMenu.Item key={link.href}>
               <Link
-                className={isMobile ? mobileTriggerClassName : triggerClassName}
+                className={getTriggerClassName(link.href)}
                 href={link.href}
+                aria-current={
+                  isActiveLink(currentPath, link.href) ? "page" : undefined
+                }
               >
                 {link.label}
               </Link>
@@ -97,6 +145,30 @@ export default function HeaderNavigationMenu({
       </NavigationMenu.Portal>
     </NavigationMenu.Root>
   );
+}
+
+function isActiveLink(currentPath: string, href: string): boolean {
+  const normalizedPath = normalizePath(currentPath);
+  const normalizedHref = normalizePath(href);
+
+  if (normalizedHref === "/") return normalizedPath === "/";
+
+  return (
+    normalizedPath === normalizedHref ||
+    normalizedPath.startsWith(`${normalizedHref}/`)
+  );
+}
+
+function isExactActiveLink(currentPath: string, href: string): boolean {
+  return normalizePath(currentPath) === normalizePath(href);
+}
+
+function normalizePath(path: string): string {
+  if (path.length > 1 && path.endsWith("/")) {
+    return path.slice(0, -1);
+  }
+
+  return path;
 }
 
 function Link(props: NavigationMenu.Link.Props) {
@@ -128,11 +200,23 @@ function CaretDownIcon(props: React.ComponentProps<"svg">) {
   );
 }
 
-const triggerClassName =
-  "flex h-8 items-center justify-center gap-1.5 bg-transparent px-2 text-sm font-normal text-neutral-950 no-underline select-none min-[501px]:px-3 hover:bg-neutral-100 data-pressed:bg-neutral-100 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950 uppercase";
+const triggerBaseClassName =
+  "flex h-8 items-center justify-center gap-1.5 px-2 text-sm font-normal no-underline select-none min-[501px]:px-3 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950 uppercase";
 
-const mobileTriggerClassName =
-  "flex h-8 gap-1.5 items-center bg-transparent px-2 text-sm font-normal text-white no-underline select-none min-[501px]:px-3 hover:bg-neutral-900 data-pressed:bg-neutral-900 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-50 uppercase w-fit";
+const mobileTriggerBaseClassName =
+  "flex h-8 gap-1.5 items-center px-2 text-sm font-normal no-underline select-none min-[501px]:px-3 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-50 uppercase w-fit";
+
+const inactiveTriggerClassName =
+  "bg-transparent text-neutral-950 hover:bg-neutral-100 data-pressed:bg-neutral-100";
+
+const mobileInactiveTriggerClassName =
+  "bg-transparent text-white hover:bg-neutral-900 data-pressed:bg-neutral-900";
+
+const activeTriggerClassName =
+  "bg-neutral-950 text-white hover:bg-neutral-950 data-pressed:bg-neutral-950";
+
+const mobileActiveTriggerClassName =
+  "bg-white text-neutral-950 hover:bg-white data-pressed:bg-white";
 
 const contentClassName =
   "h-full w-[calc(100vw-40px)] p-2 min-[500px]:w-max min-[500px]:max-w-[400px] " +
@@ -145,3 +229,5 @@ const contentClassName =
 
 const linkCardClassName =
   "relative block h-full w-full border-0 bg-transparent p-2 text-left text-inherit no-underline hover:bg-neutral-100 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950 ";
+
+const activeLinkCardClassName = "bg-neutral-100";

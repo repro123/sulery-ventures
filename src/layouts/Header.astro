@@ -2,8 +2,9 @@
 import Container from "@layouts/Container.astro";
 import MobileMenu from "@components/client/MobileMenu.tsx";
 import HeaderNavigationMenu from "@/components/client/NavigationMenu";
-
 import HeaderCallCTA from "@components/header/HeaderCallCTA.astro";
+
+const currentPath = Astro.url.pathname;
 
 import IconBlack from "@assets/logos/icon-black.png";
 import { Image } from "astro:assets";
@@ -21,7 +22,7 @@ const sortedServices = services
   }));
 ---
 
-<header class="sticky top-0 z-50 bg-white/80 py-4 shadow backdrop-blur-sm">
+<header class="sticky top-0 z-50 bg-white/80 py-2 shadow backdrop-blur-sm">
   <Container className="flex items-center gap-4 justify-between">
     <a href="/" aria-label="Sulery Ventures Home">
       <Image
@@ -33,10 +34,18 @@ const sortedServices = services
       />
     </a>
 
-    <MobileMenu services={sortedServices} client:load />
+    <MobileMenu
+      services={sortedServices}
+      currentPath={currentPath}
+      client:load
+    />
 
     <div class="hidden lg:block">
-      <HeaderNavigationMenu services={sortedServices} client:load />
+      <HeaderNavigationMenu
+        services={sortedServices}
+        currentPath={currentPath}
+        client:load
+      />
     </div>
 
     <HeaderCallCTA />

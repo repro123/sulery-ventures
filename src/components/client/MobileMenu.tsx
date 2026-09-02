@@ -10,9 +10,13 @@ interface Service {
 
 interface HeaderNavigationMenuProps {
   services: Service[];
+  currentPath: string;
 }
 
-export default function MobileMenu({ services }: HeaderNavigationMenuProps) {
+export default function MobileMenu({
+  services,
+  currentPath,
+}: HeaderNavigationMenuProps) {
   return (
     <div className="block lg:hidden relative">
       <Drawer.Root swipeDirection="right">
@@ -40,7 +44,11 @@ export default function MobileMenu({ services }: HeaderNavigationMenuProps) {
                 <Drawer.Description
                   className="mb-6 "
                   render={
-                    <HeaderNavigationMenu services={services} isMobile={true} />
+                    <HeaderNavigationMenu
+                      services={services}
+                      currentPath={currentPath}
+                      isMobile={true}
+                    />
                   }
                 />
               </Drawer.Content>

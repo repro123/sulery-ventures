@@ -29,31 +29,32 @@ const setupProcess = z.object({
 
 const services = defineCollection({
   loader: glob({ base: "./src/content/services", pattern: "**/*.{md,mdx}" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    image: z.string().optional(),
-    priSpan: z.string(),
-    secSpan: z.string(),
-    order: z.number().default(0),
-    faqs: z.array(
-      z.object({
-        question: z.string(),
-        answer: z.string(),
-      }),
-    ),
-    intro: z.array(z.string()),
-    introHeading: z.string(),
-    subserviceHeading: z.string(),
-    subservices: z.array(subservice).default([]),
-    clientSection: z
-      .object({
-        heading: z.string(),
-        cards: z.array(clientCard).default([]),
-      })
-      .optional(),
-    setupProcesses: z.array(setupProcess).default([]),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      image: image(),
+      priSpan: z.string(),
+      secSpan: z.string(),
+      order: z.number().default(0),
+      faqs: z.array(
+        z.object({
+          question: z.string(),
+          answer: z.string(),
+        }),
+      ),
+      intro: z.array(z.string()),
+      introHeading: z.string(),
+      subserviceHeading: z.string(),
+      subservices: z.array(subservice).default([]),
+      clientSection: z
+        .object({
+          heading: z.string(),
+          cards: z.array(clientCard).default([]),
+        })
+        .optional(),
+      setupProcesses: z.array(setupProcess).default([]),
+    }),
 });
 
 export const collections = { services };

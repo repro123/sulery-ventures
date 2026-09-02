@@ -1,10 +1,16 @@
 ---
 import Container from "@layouts/Container.astro";
 import HorizontalBar from "@components/shared/HorizontalBar.astro";
+import type { CollectionEntry } from "astro:content";
 
 import { Image } from "astro:assets";
-import { services } from "@lib/data.ts";
 import { ArrowRight } from "@lucide/astro";
+
+interface Props {
+  services: CollectionEntry<"services">[];
+}
+
+const { services } = Astro.props;
 ---
 
 <section class="py-12">
@@ -22,21 +28,21 @@ import { ArrowRight } from "@lucide/astro";
       {
         services.map((service) => (
           <div class="bg-white p-4 shadow">
-            <h3 class="capitalize text-xl">{service.label}</h3>
+            <h3 class="capitalize text-xl">{service.data.title}</h3>
 
             <div class="mt-4 h-40">
               <Image
-                src={service.image}
-                alt={service.label}
+                src={service.data.image}
+                alt={service.data.title}
                 class="w-full h-full object-cover"
               />
             </div>
 
             <div class="mt-6 flex flex-col gap-8">
-              <p>{service.cardText}</p>
+              <p>{service.data.description}</p>
 
               <a
-                href={`/services/${service.label.toLowerCase().replaceAll(" ", "-")}`}
+                href={`/services/${service.id}`}
                 class="mt-auto border px-6 py-2 hover:bg-black hover:text-white transition-all duration-300 w-fit flex items-center gap-2"
               >
                 Learn more <ArrowRight />
