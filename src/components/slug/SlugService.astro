@@ -24,7 +24,7 @@ const { heading, subservices } = Astro.props;
       {
         subservices.map((subservice) => (
           <article class="mt-8">
-            <h3 class="text-primary-orange">{subservice.heading}</h3>
+            <h3 class="text-primary">{subservice.heading}</h3>
             {subservice.paragraphs.map((paragraph) => (
               <p>{paragraph}</p>
             ))}

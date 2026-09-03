@@ -8,8 +8,10 @@
 @theme {
   --color-primary-dark: #0a0a0a;
   --color-charcoal: #171717;
-  --color-primary-orange: #f97316;
-  --color-light-accent: #ffedd5;
+  --color-primary: #2563eb;
+  --color-light-accent: #dbeafe;
+  /* --color-primary: #f97316;
+  --color-light-accent: #ffedd5; */
   --color-background: #fafaf9;
   --color-main-text: #1c1917;
   --color-muted-text: #78716c;
@@ -45,10 +47,10 @@
 
 @layer components {
   .mobile-active {
-    @apply text-primary-orange;
+    @apply text-primary;
   }
   .desktop-active {
-    @apply p-2 bg-primary-orange text-white border border-primary-orange hover:bg-light-accent hover:text-black transition-all duration-300;
+    @apply p-2 bg-primary text-white border border-primary hover:bg-light-accent hover:text-black transition-all duration-300;
   }
   h1 {
     @apply text-4xl font-semibold;

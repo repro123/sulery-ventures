@@ -8,7 +8,7 @@ export default function FAQ({ items }: { items: FAQProps[] }) {
       <div className="max-w-7xl mx-auto px-4">
         <h2>Frequently Asked Questions</h2>
 
-        <span className="block mt-4 w-20 h-1 bg-primary-orange"></span>
+        <span className="block mt-4 w-20 h-1 bg-primary"></span>
 
         <Accordion.Root className="flex w-full flex-col text-neutral-950 mt-6">
           {items.map((item, i) => (
@@ -17,7 +17,7 @@ export default function FAQ({ items }: { items: FAQProps[] }) {
               className={i > 0 ? "border-t border-neutral-950" : ""}
             >
               <Accordion.Header>
-                <Accordion.Trigger className="group flex w-full items-center justify-between gap-4 text-primary-orange px-3 py-2 text-left text-sm font-normal select-none hover:not-data-disabled:bg-light-accent focus-visible:relative focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-neutral-950">
+                <Accordion.Trigger className="group flex w-full items-center justify-between gap-4 text-primary px-3 py-2 text-left text-sm font-normal select-none hover:not-data-disabled:bg-light-accent focus-visible:relative focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-neutral-950">
                   {item.question}
                   <PlusIcon className="shrink-0 transition-transform duration-100 ease-[ease-out] group-data-panel-open:rotate-45" />
                 </Accordion.Trigger>
