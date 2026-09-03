@@ -1,5 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import {
+  businessLocations,
+  businessName,
+  businessPhoneNumbers,
+  parentBusinessName,
+  siteUrl,
+} from "@/lib/schema";
 
 interface Props {
   services: CollectionEntry<"services">[];
@@ -11,10 +18,10 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
 
-  name: "Sulery Ventures Services",
+  name: "Sulery Computer Technologies Services",
 
   description:
-    "Technology, security and communication solutions provided by Sulery Ventures in Lagos, Nigeria.",
+    "Computer, office equipment, printing, networking, security, CBT deployment, access control, intercom and website design services provided by Sulery Computer Technologies in Apapa, Surulere and Ikorodu, Lagos, Nigeria.",
 
   numberOfItems: services.length,
 
@@ -25,10 +32,15 @@ const schema = {
       "@type": "Service",
       name: service.data.title,
       description: service.data.description,
-      url: new URL(
-        `/services/${service.id}`,
-        "https://suleryventures.com",
-      ).toString(),
+      url: new URL(`/services/${service.id}`, siteUrl).toString(),
+      areaServed: businessLocations,
+      provider: {
+        "@type": "LocalBusiness",
+        name: businessName,
+        alternateName: parentBusinessName,
+        telephone: businessPhoneNumbers,
+        url: siteUrl,
+      },
     },
   })),
 };

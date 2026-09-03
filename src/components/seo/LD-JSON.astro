@@ -1,37 +1,60 @@
 ---
+import { getCollection } from "astro:content";
+import {
+  businessEmail,
+  businessLocations,
+  businessName,
+  businessPhoneNumbers,
+  coreServices,
+  parentBusinessName,
+  siteUrl,
+} from "@/lib/schema";
+
+const services = await getCollection("services");
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
+const serviceNames = sortedServices.map((service) => service.data.title);
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
 
-  name: "Sulery Ventures",
-  email: "suleryventures@hotmail.com",
+  name: businessName,
+  alternateName: parentBusinessName,
+  email: businessEmail,
 
-  url: "https://suleryventures.com",
+  url: siteUrl,
 
   description:
-    "Sulery Ventures provides computer solutions, CCTV and surveillance, networking, access control and intercom system services in Lagos, Nigeria.",
+    "Sulery Computer Technologies, a subsidiary of Sulery Ventures, provides computer sales, supply, repair and maintenance, office equipment, networking, internet connectivity, printing, cybercafe installation, WAEC and NECO CBT deployment, CCTV, intercom, access control and website design services in Lagos, Nigeria.",
 
-  telephone: "+2348023220365",
+  telephone: businessPhoneNumbers,
 
-  areaServed: {
-    "@type": "City",
-    name: "Lagos",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "NG",
-    },
+  areaServed: businessLocations,
+
+  knowsAbout: [...new Set([...serviceNames, ...coreServices])],
+
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Sulery Computer Technologies services",
+    itemListElement: sortedServices.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.data.title,
+        description: service.data.description,
+        url: new URL(`/services/${service.id}`, siteUrl).toString(),
+        areaServed: businessLocations,
+      },
+    })),
   },
 
-  knowsAbout: [
-    "Computer Sales",
-    "Computer Repairs",
-    "Computer Accessories",
-    "CCTV Installation",
-    "CCTV Surveillance",
-    "Networking",
-    "Access Control Systems",
-    "Intercom Systems",
-  ],
+  contactPoint: businessPhoneNumbers.map((telephone) => ({
+    "@type": "ContactPoint",
+    telephone,
+    contactType: "customer service",
+    areaServed: "NG",
+    availableLanguage: "English",
+  })),
 };
 ---
 

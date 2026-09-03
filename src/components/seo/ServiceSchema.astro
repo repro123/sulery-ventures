@@ -1,5 +1,13 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import {
+  businessEmail,
+  businessLocations,
+  businessName,
+  businessPhoneNumbers,
+  parentBusinessName,
+  siteUrl,
+} from "@/lib/schema";
 
 interface Props {
   service: CollectionEntry<"services">;
@@ -15,27 +23,19 @@ const schema = {
 
   description: service.data.description,
 
-  url: new URL(
-    `/services/${service.id}`,
-    "https://suleryventures.com",
-  ).toString(),
+  url: new URL(`/services/${service.id}`, siteUrl).toString(),
 
   provider: {
     "@type": "LocalBusiness",
-    name: "Sulery Ventures",
-    email: "suleryventures@hotmail.com",
-    url: "https://suleryventures.com",
-    telephone: "+2348023220365",
+    name: businessName,
+    alternateName: parentBusinessName,
+    email: businessEmail,
+    url: siteUrl,
+    telephone: businessPhoneNumbers,
+    areaServed: businessLocations,
   },
 
-  areaServed: {
-    "@type": "City",
-    name: "Lagos",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "NG",
-    },
-  },
+  areaServed: businessLocations,
 };
 ---
 
